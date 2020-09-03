@@ -6,7 +6,7 @@
     "author": "reversesweep",
     "content_scripts": [
       {
-        "matches": ["https://*.com/*"],
+        "matches": ["https://bestfightodds.com/"],
         "js": ["src/js/content_script.js"]
       }
     ],
@@ -17,7 +17,6 @@
     },
     "permissions": [
       "activeTab",
-      "tabs",
       "storage"
     ],
     "web_accessible_resources": [
