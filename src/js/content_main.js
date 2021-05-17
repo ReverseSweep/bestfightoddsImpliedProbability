@@ -45,21 +45,21 @@ class OddsConverter {
         let convertFunction = this.getOddsConverterFunction(oddsFormat);
 
         // the last character being ")" means implied odds are already appended
-        let shouldAppend = oddsInfo[0][1].innerText.slice(-1) !== ')';
+        let shouldAppend = oddsInfo[0][0].innerText.slice(-1) !== ')';
 
         for (let i = 0; i < oddsInfo.length; i++) {
-            let originalInnerText = oddsInfo[i][1].innerText;
+            let originalInnerText = oddsInfo[i][0].innerText;
             if (shouldAppend) {
                 let impliedProbability = convertFunction(originalInnerText);
-                oddsInfo[i][1].innerText = originalInnerText + " \n" + '(' + impliedProbability.toString() + "% )";
+                oddsInfo[i][0].innerText = originalInnerText + " \n" + '(' + impliedProbability.toString() + "% )";
             } else {
-                oddsInfo[i][1].innerText = originalInnerText.slice(0, originalInnerText.indexOf('(') - 1);
+                oddsInfo[i][0].innerText = originalInnerText.slice(0, originalInnerText.indexOf('(') - 1);
             }
         }
     }
 
     getOddsFormat (oddsInfo) {
-        let rawOddsExample = oddsInfo[0][1].innerText;
+        let rawOddsExample = oddsInfo[0][0].innerText;
         if (rawOddsExample.includes('-') || rawOddsExample.includes('+')) {
             return this.OddsFormat.MoneyLine;
         } else if(rawOddsExample.includes('/')) {
